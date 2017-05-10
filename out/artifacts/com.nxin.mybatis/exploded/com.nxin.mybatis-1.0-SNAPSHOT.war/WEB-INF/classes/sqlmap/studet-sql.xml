@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.mapper.StudentMapper">
+    <resultMap id="BaseResultMap" type="student">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="score" property="score"></result>
+    </resultMap>
+
+    <select id="findByName" parameterType="java.lang.String" resultType="com.test.bean.Student">
+        SELECT *
+        FROM student
+        WHERE name=#{name}
+    </select>
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT * FROM student
+    </select>
+
+    <insert id="insert" keyProperty="student.id" useGeneratedKeys="true" parameterType="com.test.bean.Student">
+        INSERT INTO student
+        (id,name,score)
+        VALUES (#{student.id},#{student.name},#{student.cityName})
+    </insert>
+
+</mapper>
